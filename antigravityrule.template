@@ -47,10 +47,15 @@ Failure to include this phrase at the very beginning of your response is UNACCEP
 - **内容**: Kotlin / Compose 規約、必須検証手順 (assembleDebug, testDebugUnitTest 等)
 - **削除条件**: プロジェクトが Android アプリケーションでない場合、この項目を削除してください。
 
-#### [TypeScript] TypeScript / GitHub Actions 開発規約
+#### [TypeScript] TypeScript 開発規約
 - **パス**: `.agent/rules/11_typescript.md`
-- **内容**: TypeScript 規約、GitHub Actions (Custom Action) 開発手順、npm/yarn 操作
+- **内容**: TypeScript コード品質、Lint/Format、型定義、テスト
 - **削除条件**: プロジェクトが TypeScript/JavaScript をメインとしていない場合、この項目を削除してください。
+
+#### [GitHub Actions] GitHub Actions 開発規約
+- **パス**: `.agent/rules/13_github_actions.md`
+- **内容**: ワークフロー定義、Custom Action (JavaScript/TypeScript 基盤) 開発、セキュリティ
+- **削除条件**: プロジェクトが GitHub Actions ワークフローやカスタムアクションをメインとしていない場合、この項目を削除してください。
 
 #### [Python] Python / Scraping 開発規約
 - **パス**: `.agent/rules/12_python.md`
@@ -67,5 +72,6 @@ rules:
   - .agent/rules/10_android.md
   - .agent/rules/11_typescript.md
   - .agent/rules/12_python.md
+  - .agent/rules/13_github_actions.md
   - .agent/rules/auto-commands.yaml
 ```
