@@ -51,13 +51,9 @@
 - `git pull`
 - `git branch -d / -D`
 
-### 許可なしで実行可能な操作 (SafeToAutoRun: true)
-以下の読み取り専用または非破壊的な操作は、ユーザーの承認なしに実行できます。
-- `git status` / `git status --porcelain`
-- `git log`
-- `git diff`
-- `git show`
-- `git branch` (一覧表示)
-- `git fetch origin`
-- `git remote prune origin`
-- `git remote -v`
+### 許可なしで実行可能な操作
+自動実行が許可されているコマンド（SafeToAutoRun: true）の最新リストについては、対象とするプラットフォームに関わらず、**常に `auto-commands.yaml` を参照・遵守**してください。
+
+**【自律的操作における制約事項】**
+- `git add`: インデックスへの追加（ステージング）のみ許可されます。コミットやプッシュは必ずユーザーの承認を得る必要があります。
+- `git checkout`: 既存ブランチへの切り替え、または `gh issue develop` 等の規約に付随する作業ブランチ作成のみ許可されます。
