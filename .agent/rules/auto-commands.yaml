@@ -29,8 +29,10 @@ git:
     - git fetch
     - git remote
     - git submodule
-    - git add # ステーギングのみ
-    - git checkout # 既存ブランチ、作業ブランチ作成
+    # ステーギングのみ
+    - git add
+    # 既存ブランチ、作業ブランチ作成
+    - git checkout 
 
 github_cli:
   description: "GitHub CLI を用いた進捗確認・情報取得"
