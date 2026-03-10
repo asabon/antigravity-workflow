@@ -71,9 +71,8 @@ PR の本文には、以下のセクションを必ず含めてください。
 - **リポジトリ設定の変更**: `gh label create / edit` など。
 - **破壊的な操作**: コメントの削除や Issue のクローズ(`Closes` による自動クローズを除く)。
 
-### 許可なしで実行可能な操作 (SafeToAutoRun: true)
-- **情報の取得**: `gh issue view / list`, `gh pr view / list`, `gh label list`, `gh repo view`
-- **認証・状態確認**: `gh auth status`, `gh --version`
+### 許可なしで実行可能な操作
+自動実行が許可されているコマンド（SafeToAutoRun: true）の最新リストについては、**`auto-commands.yaml` を参照・遵守**してください。
 
 ## 5. 技術的トラブルへの対応 (CLI)
 
