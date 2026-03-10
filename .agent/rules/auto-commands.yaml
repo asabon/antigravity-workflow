@@ -1,35 +1,78 @@
-# 自動実行許可設定 (SafeToAutoRun: true)
+# AI Agent 自動実行許可設定 (SafeToAutoRun: true)
+#
+# このファイルは AI エージェントがユーザーの明示的な許可なしに実行できるコマンドのホワイトリストです。
+# 他のルール（.antigravityrule, .agent/rules/01_workflow.md 等）に基づき、
+# 副作用が限定的、または読み取り専用の操作を中心に定義されています。
 
-AI がユーザーの明示的な許可なく実行できるコマンドのリストです。
-これらのコマンドは、副作用が極めて小さい、または読み取り専用、あるいは開発中の頻繁な検証に必要なものに限定されています。
+general:
+  description: "システム情報の取得・基本的なファイル操作"
+  commands:
+    - ls
+    - dir
+    - pwd
+    - cat
+    - type
+    - echo
+    - fd
+    - rg
+    - grep
 
-## 1. 情報取得・読み取り (General)
-- `ls`, `dir`, `cat`, `type`
-- `pwd`, `cd` (Antigravity自体はcdを禁止しているが、コマンド内でのパス指定用)
-- `gh auth status`, `gh issue list`, `gh pr list`
-- `git status`, `git branch`, `git log`, `git diff`
-- `git remote -v`, `git submodule status`
+git:
+  description: "Git 読み取り操作および非破壊的な状態管理"
+  commands:
+    - git status
+    - git branch
+    - git log
+    - git diff
+    - git show
+    - git rev-parse
+    - git fetch
+    - git remote
+    - git submodule
+    - git add # ステーギングのみ
+    - git checkout # 既存ブランチ、作業ブランチ作成
 
-## 2. ビルド・検証・テスト (Standard)
+github_cli:
+  description: "GitHub CLI を用いた進捗確認・情報取得"
+  commands:
+    - gh auth status
+    - gh issue list
+    - gh issue view
+    - gh pr list
+    - gh pr view
+    - gh repo view
 
-### Android
-- `./gradlew assembleDebug`, `./gradlew testDebugUnitTest`
-- `./gradlew ktlintCheck`, `./gradlew ktlintFormat`
-- `./gradlew lintDebug`
+development_stacks:
+  android:
+    description: "Android (Gradle) 関連のビルド・検証・テスト"
+    commands:
+      - ./gradlew assembleDebug
+      - ./gradlew testDebugUnitTest
+      - ./gradlew ktlintCheck
+      - ./gradlew ktlintFormat
+      - ./gradlew lintDebug
+  
+  nodejs_typescript:
+    description: "Node.js / TypeScript 関連の依存関係インストール・検証"
+    commands:
+      - npm install
+      - npm test
+      - npm run lint
+      - npm run build
+      - yarn install
+      - yarn test
+      - yarn lint
 
-### Node.js / TypeScript
-- `npm install`, `npm test`, `npm run lint`, `npm run build`
-- `yarn install`, `yarn test`, `yarn lint`
+  python:
+    description: "Python 関連の検証・テスト・フォーマット"
+    commands:
+      - pip install -r requirements.txt
+      - pip list
+      - pytest
+      - python -m pytest
+      - black .
+      - flake8
+      - isort .
 
-### Python
-- `pip install -r requirements.txt`, `pip list`
-- `pytest`, `python -m pytest`
-- `black .`, `flake8`, `isort .`
-
-## 3. ファイル操作・検索
-- `fd`, `rg`, `grep`
-- `find_by_name`, `grep_search` 等の組み込みツール呼び出し
-
-## 4. Git (一部)
-- `git add` (コミット前のステージングのみ)
-- `git checkout` (既存ブランチへの切り替え、作業用ブランチの作成)
+# 注意: Antigravity 組み込みツール (grep_search, find_by_name 等) は、
+# プロトコルレベルで制御されるため、ここでのシェルコマンド定義とは別途扱われます。
