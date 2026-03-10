@@ -61,3 +61,5 @@
 - `git fetch origin`
 - `git remote prune origin`
 - `git remote -v`
+- `git add` (インデックスへの追加/ステージングのみ。コミット・プッシュは要承認)
+- `git checkout` (既存ブランチへの切り替え、または `gh issue develop` 等に付随する作業ブランチ作成のみ)

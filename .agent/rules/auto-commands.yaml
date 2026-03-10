@@ -29,10 +29,8 @@ git:
     - git fetch
     - git remote
     - git submodule
-    # インデックスへの追加（ステージング）のみ。コミット・プッシュは要承認。
-    - git add
-    # 既存ブランチ、作業ブランチ作成
-    - git checkout 
+    - git add # 詳細は 02_git.md 参照
+    - git checkout # 詳細は 02_git.md 参照
 
 github_cli:
   description: "GitHub CLI を用いた進捗確認・情報取得"
