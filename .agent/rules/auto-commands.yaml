@@ -74,5 +74,14 @@ development_stacks:
       - flake8
       - isort .
 
+temp_directory:
+  description: "temp/ ディレクトリ内の一時ファイル操作 (SafeToAutoRun: true)"
+  commands:
+    - rm temp/*
+    - rm temp\*
+    - del temp\*
+    - mv temp\*
+    - cp temp\*
+
 # 注意: Antigravity 組み込みツール (grep_search, find_by_name 等) は、
 # プロトコルレベルで制御されるため、ここでのシェルコマンド定義とは別途扱われます。
