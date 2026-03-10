@@ -2,7 +2,8 @@
 description: 最後に保存された状態（Issue の栞）から作業を再開する
 ---
 
-1. **全体像の把握**: `docs/99_progress/roadmap.md` を読み、現在のフェーズを確認する。
+1. **ルールの再確認**: リポジトリ直下の `.antigravityrule` を読み込み、プロジェクト固有の制約とコミュニケーションルールを再確認する。
+2. **全体像の把握**: `docs/99_progress/roadmap.md` を読み、現在のフェーズを確認する。
 2. **関連 Issue の特定**:
    - まず、**`gh issue list --label "working" --limit 1`** を実行し、現在進行中の Issue を特定します。
    - ラベルから特定できない場合は、現在の作業ブランチ名（`& git branch --show-current`）や、自分の活動履歴を GitHub CLI 等で確認して特定を試みます。
