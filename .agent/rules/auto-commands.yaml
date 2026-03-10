@@ -29,7 +29,7 @@ git:
     - git fetch
     - git remote
     - git submodule
-    # ステーギングのみ
+    # ステージングのみ
     - git add
     # 既存ブランチ、作業ブランチ作成
     - git checkout 
