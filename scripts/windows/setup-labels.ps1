@@ -12,6 +12,10 @@ $labels = @(
     @{ name = "refactor"; color = "1d76db"; description = "リファクタリング" }
     @{ name = "chore"; color = "c5def5"; description = "雑務・ビルド関連" }
     @{ name = "test"; color = "006b75"; description = "テスト追加・修正" }
+    @{ name = "research"; color = "6bc59a"; description = "調査・リサーチ" }
+    @{ name = "question"; color = "cc317c"; description = "質問" }
+    @{ name = "discussion"; color = "0052cc"; description = "議論・検討" }
+    @{ name = "security"; color = "e99695"; description = "セキュリティ" }
     
     # リリース調整ラベル (Release Labels)
     @{ name = "major"; color = "0e8a16"; description = "メジャーバージョンアップ（破壊的変更あり）" }
