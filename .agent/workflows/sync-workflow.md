@@ -1,13 +1,13 @@
 ---
-description: テンプレートリポジトリから最新のルールを取得し、現在のプロジェクトに反映します
+description: テンプレートリポジリから最新のワークフローを取り込みます
 ---
-このコマンドは、Antigravity Shared Environment テンプレートの更新内容（新しいルールやワークフロー改善など）を、既存のプロジェクトに取り込むためのコマンドです。
+このコマンドは、antigravity-workflow テンプレートの更新内容（新しいルールやワークフロー改善など）を、既存のプロジェクトに取り込むためのコマンドです。
 
 AIエージェントは、以下の手順で更新作業を慎重かつ効率的に行ってください。
 
 1. **一時的なリモートの登録**
-   - テンプレートリポジトリ (`https://github.com/asabon/antigravity-shared-env.git`) を、現在のプロジェクトに一時的なリモート（例: `upstream-sync`）として登録してください。
-   - `git remote add upstream-sync https://github.com/asabon/antigravity-shared-env.git`
+   - テンプレートリポジリ (`https://github.com/asabon/antigravity-workflow.git`) を、現在のプロジェクトに一時的なリモート（例: `upstream-sync`）として登録してください。
+   - `git remote add upstream-sync https://github.com/asabon/antigravity-workflow.git`
 
 2. **最新情報の取得**
    - `git fetch upstream-sync main` を実行し、テンプレートの最新の差分情報を取得してください。
