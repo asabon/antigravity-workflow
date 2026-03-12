@@ -7,10 +7,11 @@ AIエージェントは、以下の手順で現在のプロジェクトの初期
 
 1. **最新基盤の取得 (Bootstrap)**
    - 最新の共通規約やワークフローを反映するため、一時的なリモートを登録して同期を行います。
+   - **前提条件**: `git status` を確認し、未コミットの変更がない（ワーキングツリーがクリーンである）ことを確認してください。
    - `git remote add upstream-bootstrap https://github.com/asabon/antigravity-workflow.git`
    - `git fetch upstream-bootstrap main`
-   - **Core ファイルの強制同期**: 以下のパスを最新化してください。
-     - `git checkout upstream-bootstrap/main -- .antigravityrule .agent/ .hooks/ scripts/` (ただし `.agent/custom/` は除外)
+   - **Core ファイルの強制同期**: 履歴を無視して最新のファイルのみを取得・上書きします。
+     - `git checkout upstream-bootstrap/main -- .antigravityrule .agent/ .hooks/ scripts/ ":(exclude).agent/custom/*"`
    - 同期完了後、リモートを削除してください： `git remote remove upstream-bootstrap`
 
 2. **ロードマップの初期化**
