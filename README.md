@@ -23,6 +23,7 @@
 ## 主な特徴 (Key Features)
 
 - **2-Step Bootstrap**: `/setup` 一回で最新の AI 開発環境が整います。
+- **GitHub flow 準拠**: Issue/PR ベースのシンプルで堅牢な開発ワークフローを強制します。
 - **階層化構成 (Layered Configuration)**: 
   - 基盤ルール (`.agent/rules/`) と、プロジェクト固有ルール (`.agent/custom/`) を分離。
   - プロジェクト側のカスタマイズを破壊せずに基盤のみをアップデート可能です。
