@@ -27,6 +27,9 @@ Failure to include this phrase at the very beginning of your response is UNACCEP
 
 ### 1. プロジェクト共通制約 (Core Constraints)
 
+- **階層化構成 (Layered Configuration)**:
+  - `.agent/rules/` にある基盤ルールよりも、`.agent/custom/` にあるプロジェクト固有ルールを優先してください。
+  - Android 固有の規約や技術スタック特有の指示は `custom/` 配下を参照してください。
 - **`main` ブランチの完全保護**:
   - `main` ブランチへの直接的な `commit` および `push` は厳禁です。
   - すべての変更は必ず作業用ブランチを作成し、Pull Request (PR) を経由してください。
