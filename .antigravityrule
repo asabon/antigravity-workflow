@@ -15,6 +15,12 @@ Failure to include this phrase at the very beginning of your response is UNACCEP
 
 **CONTEXT PERSISTENCE RULE**
 会話が長期化（目安として 10 ターン以上）した場合、または作業フェーズが大きく変わる（計画から実装へ移動するなど）際は、現在のルールセットに相違がないか確認するため、自律的に `.antigravityrule` を `view_file` で読み直してください。
+
+**REPORTING RULE (セッション終了時の儀式)**
+ユーザーに作業完了を報告（`notify_user`）する前に、以下の項目を自律的にチェックしてください。
+1. **PR ステータス**: レビュー依頼時は必ず `gh pr ready` を実行し、Draft を解除しているか？
+2. **成果確認**: `walkthrough.md` にエビデンス（実行結果、ログ、画像等）が含まれているか？
+3. **ロードマップ**: `roadmap.md` の当該タスクを完了状態に更新しているか？
 </critical_instruction>
 
 - **言語指定**: 回答 (Thoughts、メッセージ、Artifacts) はすべて**日本語**で記述してください。
