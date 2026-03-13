@@ -4,47 +4,58 @@
 
 ## 1. 全体ライフサイクル (Lifecycle Overview)
 
-開発の開始から完了、クリーンアップまでのシーケンスです。
+開発の開始から完了、クリーンアップまでの概要シーケンスです。
 
 ```mermaid
 sequenceDiagram
     participant U as ユーザー (User)
     participant A as AI Agent (Assistant)
-    participant S as AI Skills (kickoff/wrapup)
-    participant R as roadmap.md
-    participant I as GitHub Issue
-    participant B as 作業ブランチ
-    participant P as Pull Request
+    participant S as AI Skills (手順書)
+    participant E as 開発環境 (Issue/Branch/PR)
 
     U->>A: 開発依頼 (Request)
-    Note over A: 着手が必要と判断
-    A->>S: kickoff-task を読込
-    A->>R: 内容確認
-    A->>I: Issue特定・同期
-    A->>B: ブランチ作成 & チェックアウト
-    A->>P: Draft PR作成 (早期公開)
     
+    rect rgb(235, 245, 255)
+        Note over A,S: 1. 準備・着手フェーズ (Kickoff)
+        A->>S: kickoff-task 読込・実行
+        S-->>E: 作業環境の構築 (Issue/Branch/Draft PR)
+    end
+
     rect rgb(240, 240, 240)
-        Note over U,P: 実装フェーズ (Implementation Phase)
-        A->>B: 実装 & テスト
-        B-->>P: 自動Push
-        U->>P: 経過確認 (Review)
-        U-->>A: フィードバック / /save
+        Note over U,E: 2. 実装フェーズ (Implementation)
+        loop 実装・試行錯誤
+            A->>E: 実装・テスト・Push
+            U->>E: 経過確認 (Draft PR)
+            U-->>A: フィードバック / /save
+        end
     end
     
-    Note over A: 実装完了の自己判断
-    A->>S: wrapup-task を読込
-    A->>R: 完了マーク付与
-    A->>P: Ready for review
-    A->>U: 完了報告 (notify_user)
+    rect rgb(235, 255, 235)
+        Note over A,S: 3. 完了・最終化フェーズ (Wrapup)
+        Note over A: 実装完了の自己判断
+        A->>S: wrapup-task 読込・実行
+        S-->>E: 成果物の最終化 (Roadmap更新/PR Ready)
+        A->>U: 完了報告 (notify_user)
+    end
+
+    rect rgb(255, 245, 235)
+        Note over U,E: 4. レビュー・マージフェーズ (Review & Merge)
+        U->>E: PR レビュー / フィードバック
+        alt 修正が必要な場合
+            U->>A: 修正依頼
+            A->>E: 修正対応 (実装フェーズへ戻る)
+        else 承認 (Approved)
+            U->>E: マージ (Merge)
+        end
+    end
     
-    U->>P: マージ (Merge)
-    U->>B: /cleanup (ブランチ削除)
+    U->>E: 5. 収束フェーズ (Cleanup)
+    U->>E: /cleanup によるブランチ整理
 ```
 
 ## 2. 着手フロー (Kickoff Flow)
 
-`kickoff-task` Skill が担う、作業開始時の論理フローです。
+`kickoff-task` Skill が担う、作業開始時の詳細な論理フローです。
 
 ```mermaid
 flowchart TD
@@ -64,7 +75,7 @@ flowchart TD
 
 ## 3. 完了フロー (Wrapup Flow)
 
-`wrapup-task` Skill が担う、品質確保と最終化のフローです。
+`wrapup-task` Skill が担う、品質確保と最終化の詳細なフローです。
 
 ```mermaid
 flowchart TD
