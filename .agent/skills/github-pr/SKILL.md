@@ -12,7 +12,10 @@ description: このプロジェクト専用の PR 運用ルールに沿った操
   - 本文（Description）に `Closes #<Issue番号>` を含め、関連付けされていることを確認します。
 - **安全な作成（Draft 強制）**:
   - コマンド実行時は、必ず `--draft` オプション（`gh pr create --draft`）を使用します。
-  - 文字化けやエスケープミスを防ぐため、長文になる場合は一時ファイルを生成し、`--body-file` で指定して実行します。
+  - 文字化け防止のため、長文になる場合は一時ファイルを生成し、`--body-file` オプションを使用します。
+  - **一時ファイルの作成場所の優先順位** (直下作成厳禁):
+    1. **Artifact ディレクトリ** (システム提供の `Artifact Directory Path` 絶対パス)
+    2. **`temp/` ディレクトリ** (.gitignore で除外済み)
 
 - **ラベルの付与**:
   - 作成時に必ず適切な **「分類ラベル」** を付与してください。
@@ -26,16 +29,22 @@ description: このプロジェクト専用の PR 運用ルールに沿った操
 
 ## 2. PR の更新（本文編集）
 - **安全な編集**:
-  - 本文を更新（Edit）する際、特に長文になる場合は一時ファイルを生成し、`gh pr edit <PR番号> --body-file <ファイル名>` で実行することを**強く推奨**します（文字化け・事故防止）。
+  - 本文を更新（Edit）する際、特に長文になる場合は一時ファイルを生成し、`gh pr edit <PR番号> --body-file <ファイル名>` で実行することを**強く推奨**します。
+  - **一時ファイルの作成場所の優先順位** (直下作成厳禁):
+    1. **Artifact ディレクトリ** (システム提供の `Artifact Directory Path` 絶対パス)
+    2. **`temp/` ディレクトリ** (.gitignore で除外済み)
 
 ---
 
 ## 3. PR を Ready for review にする (最終化)
-- **最終検証の確認**:
-  - PR 本文または現在のブランチに関連する検証事項（Verification）のチェックボックスがすべて完了（`[x]`）しているか確認します。
-- **自動検証の実行**:
-  - `powershell -ExecutionPolicy Bypass -File .agent/skills/github-pr/scripts/verify-pr.ps1 -PrNumber <PR番号>` を実行し、検証に合格することを確認します。
-- **Draft の解除**:
-  - `gh pr ready <PR番号>`（または対象が一つなら `gh pr ready`）を実行し、Draft 状態を解除します。
+- **絶対条件**: 以下のコマンドを実行し、自動検証に合格（**`[RESULT] Verification PASSED!`**）することを確認します。
+  `powershell -ExecutionPolicy Bypass -File .agent/skills/github-pr/scripts/verify-pr.ps1 -PrNumber <PR番号>`
+  ※ 合格しない限り、次のステップに進んで不具合の修正を行ってください。
+- **実行**: `gh pr ready <PR番号>` を実行し、Draft 状態を解除（Ready）します。
+
+> [!CAUTION]
+> **完了報告の絶対条件ガード (Safe Gate)**
+> 上記の自動検証が「PASSED」になり、且つ PR が `Ready for review`（Draft 解除済み）になるまでは、**決して `notify_user`（完了報告）を実行してはなりません**。
+
 - **自律的な表示確認**:
   - `gh pr view <PR番号> --web` 等を利用し、表示崩れ等がないか目視確認（自律確認）することを推奨します。
