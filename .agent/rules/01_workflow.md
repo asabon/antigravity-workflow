@@ -20,9 +20,8 @@
 | **`ACTIVE`** | `PLANNING` | **対象 Issue 等の確定** | `ACTIVE` | `PREPARING` | `flow-kickoff` の実行へ移行 |
 | **`ACTIVE`** | `PREPARING` | **`flow-kickoff` 完了** | `ACTIVE` | `DEVELOPING` | Draft PRが作成され、実装を開始 |
 | **`ACTIVE`** | `DEVELOPING` | **`flow-wrapup` 完了** | `ACTIVE` | `REVIEWING` | 自動検証パス、PR が Ready 状態 |
-| **`ACTIVE`** | `REVIEWING` | **マージ完了 ＆ `/cleanup`** | `ACTIVE` | `PLANNING` | 次のタスクの計画フェーズへ戻る |
-| **`ACTIVE`** | *Any* | **`/dev-pause` （中断・栞）** | **`IDLE`** | **`-`** | 栞を残してエージェントが待機 |
-| **`ACTIVE`** | `REVIEWING` | **マージ完了（次タスクなし）** | **`IDLE`** | **`-`** | プロジェクトの全フェーズ完了時 |
+| **`ACTIVE`** | `REVIEWING` | **マージ完了 ＆ `/cleanup`** | `ACTIVE` | `PLANNING` | 次のタスク計画、または「次どうする？」の相談へ戻る |
+| **`ACTIVE`** | *Any* | **`/dev-pause` （中断・栞）** | **`IDLE`** | **`-`** | 栞を残してエージェントが待機（セッション中断） |
 
 ---
 
