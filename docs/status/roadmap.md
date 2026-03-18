@@ -30,9 +30,6 @@
 - [x] #59 3-3. 監査結果に基づくリファクタリングと最適化の実装
 - [x] #59 3-4. 共通スクリプト群のクリーンアップと命名規則の再確認
 
-<<<<<<< Updated upstream
-=======
 ## フェーズ 4: 運用の自動化とカプセル化 (Current)
-- [/] #61 4-1. 頻出更新操作のスクリプト共通化 (`update_roadmap.py`, `update_backlog.py`)
+- [x] #61 4-1. 頻出更新操作のスクリプト共通化 (`update_roadmap.py`, `update_backlog.py`)
 - [ ] #63 4-2. ワークフロー規約の包含関係・状態遷移の明確化 (`01_workflow.md`, `.antigravityrule`)
->>>>>>> Stashed changes
