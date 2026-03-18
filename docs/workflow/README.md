@@ -32,32 +32,59 @@
 
 ---
 
-### 📊 モードと状態遷移 (State Transitions)
+## 1. IDLE - ACTIVE 状態
+
+システム起動時、およびコンテキストのロード/セーブによる、大枠のモード切り替えです。
+
+### 状態遷移図
 
 ```mermaid
 stateDiagram-v2
-    state "IDLE (通常チャット)" as Idle
-    state "ACTIVE (開発モード)   " as Active {
-        [*] --> Planning : ロードマップ確認
-        Planning --> Preparing : タスク確定・Issue起票
-        Preparing --> Developing : 早期 Draft PR 作成
-        Developing --> Reviewing : 最終検証 & gh pr ready
-        Reviewing --> Planning : マージ完了 /cleanup
-    }
+    state "IDLE" as Idle
+    state "ACTIVE" as Active
 
-    [*] --> Idle
-    Idle --> Active: /dev-start (開発開始・再開)
-    Active --> Idle: /dev-pause (一時停止・保存)
+    [*] --> Idle: Antigravity 起動
+    Idle --> Active: /dev-start
+    Active --> Idle: /dev-pause
 ```
 
-### 🔄 基本的なサイクルと指示の例
+### 状態定義
 
-| フェーズ（状態） | あなた（ユーザー）の指示例 | AI エージェントの自律稼働 |
-| :--- | :--- | :--- |
-| **1. 計画・着手** | **`roadmap.md から次のタスクを選んで着手して`** | ・Issueの特定/新規起票<br>・ブランチ作成（Issue紐付け）<br>・空Commit ＆ **Draft PR** 作成 |
-| **2. 実装ループ** | ※通常は自律的に実装やテストを行います。<br>中断時: **/dev-pause** / 再開時: **/dev-start** | ・`task.md` での極小ステップ分解管理<br>・都度のテスト ＆ コミット<br>・中断時のCheckpoint（栞）投稿 |
-| **3. 最終化** | (実装ループが完了するとAIが報告します) | ・最終動作検証<br>・`roadmap.md` の完了マーク<br>・`gh pr ready` (Draft解除) |
-| **4. 後処理** | **/cleanup** | ・安全確認後のブランチ削除 |
+|状態|説明|
+|:---|:---|
+|IDLE|通常チャット・会話モード|
+|ACTIVE|開発・ワークフローモード|
+
+---
+
+## 2. ACTIVE 内部状態 (フェーズ)
+
+ACTIVE モード内では、GitHub flow に準拠した 4 つのフェーズを順番に、あるいはループで遷移します。
+
+### 状態遷移図
+
+```mermaid
+stateDiagram-v2
+    state "PLANNING" as Planning
+    state "PREPARING" as Preparing
+    state "DEVELOPING" as Developing
+    state "REVIEWING" as Reviewing
+
+    Planning --> Preparing : タスク選択
+    Preparing --> Developing : 着手
+    Developing --> Reviewing : PR発行・更新
+    Reviewing --> Developing : レビュー指摘
+    Reviewing --> Planning : /cleanup
+```
+
+### 状態定義
+
+|状態|説明|
+|:---|:---|
+|PLANNING|`roadmap.md` を管理し、次に着手するタスク(Issue)を確定させる。|
+|PREPARING|ブランチ作成、切り替え。|
+|DEVELOPING|実装ループ(コード修正→テスト→コード修正→...)の自律試行錯誤。|
+|REVIEWING|PR発行、ユーザーレビュー、およびマージ後の後処理（`/cleanup`）。|
 
 ---
 
