@@ -14,6 +14,10 @@ Whenever you receive a prompt from the user, your VERY FIRST response MUST inclu
 - **ACTIVE時**: `【📊 状態: ACTIVE | フェーズ: <PLANNING/PREPARING/DEVELOPING/REVIEWING> | Issue: #XX | PR: #YY】`
 - **IDLE時　**: `【📊 状態: IDLE | フェーズ: -】` (※ フェーズ/Issue/PR出力禁止)
 
+⚠️ **出力前の演算義務**:
+ステータスバーを決定する際は、自らの感覚（アドリブ）で判断してはいけません。
+**必ずスキル `workflow-guard` の `calc_next_state.py` を実行し、その出力を SSOT（唯一の真実）としてコピペ・採用すること。**
+
 **【⚠️ 混同注意: プレフィックスの扱い】**
 - **コミットメッセージ (`02_git.md`)**: `<type>:` (プレフィックス) の付与が **必須** です (例: `docs: update readme`)。
 - **Issue / PR タイトル (`03_github.md`)**: プレフィックスの混入は **厳禁** です (例: `READMEの更新` / 純粋な日本語のみ)。
