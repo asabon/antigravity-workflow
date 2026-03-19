@@ -33,3 +33,4 @@
 ## フェーズ 4: 運用の自動化とカプセル化 (Current)
 - [x] #61 4-1. 頻出更新操作のスクリプト共通化 (`update_roadmap.py`, `update_backlog.py`)
 - [x] #63 4-2. ワークフロー規約の包含関係・状態遷移の明確化 (`01_workflow.md`, `.antigravityrule`)
+- [x] #65 4-3. 状態遷移の自動算出（`workflow-guard` スキル）と規約の薄型化
