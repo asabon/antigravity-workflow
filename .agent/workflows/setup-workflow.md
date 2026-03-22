@@ -31,8 +31,8 @@ AIエージェントは、以下の手順で現在のプロジェクトの初期
 
 5. **環境構築スクリプトの実行**
    - 以下のスクリプトを実行して、GitHub ラベルと Git フックを有効化してください。
-     - `./scripts/windows/setup-labels.ps1`
-     - `./scripts/windows/setup-hooks.ps1`
+     - `./scripts/workflow/setup-labels.ps1`
+     - `./scripts/workflow/setup-hooks.ps1`
 
 6. **セットアップ完了の報告**
    - 作成・更新したファイルの一覧を報告し、ロードマップに基づく開発の開始を案内してください。
